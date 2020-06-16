@@ -22,7 +22,7 @@ import ws1.ConnectionHelper;
  *
  * @author Rog
  */
-public class BookM extends javax.swing.JFrame {
+public class BookManager extends javax.swing.JFrame {
     
     private BookModel model;
     private BookDB db;
@@ -30,7 +30,7 @@ public class BookM extends javax.swing.JFrame {
     /**
      * Creates new form BookM
      */
-    public BookM(BookDB db) {
+    public BookManager(BookDB db) {
         try {
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.db=db;
@@ -39,7 +39,7 @@ public class BookM extends javax.swing.JFrame {
             List<Book> books = db.getAll();
             model.setBooks(books);
         } catch (SQLException ex) {
-            Logger.getLogger(BookM.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -84,20 +84,20 @@ public class BookM extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(194, 194, 194)
-                .addComponent(addNewBook, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
-                .addComponent(refeshButton)
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(refeshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addNewBook, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addNewBook)
-                    .addComponent(refeshButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addComponent(addNewBook)
+                .addGap(18, 18, 18)
+                .addComponent(refeshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -140,14 +140,15 @@ public class BookM extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BookM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BookM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BookM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BookM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -155,12 +156,12 @@ public class BookM extends javax.swing.JFrame {
             public void run() {
                 ConnectionHelper helper = new ConnectionHelper("sa", "123456789");
                 BookDB db = new BookDBImpl(helper);  
-                BookM bookm = new BookM(db);
+                BookManager bookm = new BookManager(db);
                 bookm.setVisible(true);
                 try {
                     System.out.println(db.getAll());
                 } catch (SQLException ex) {
-                    Logger.getLogger(BookM.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(BookManager.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
